@@ -80,24 +80,16 @@ pipeline
                      sh '''
                         docker-compose down
                         docker-compose up -d
-                        docker ps
+                          docker ps
                     '''
                     
                    }
                 }
 
                 }
-                
+                echo 'Deployment completed successfully!'
             }
 
         }
 
-
-
     }
-
-
-
-
-
-}
