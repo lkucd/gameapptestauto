@@ -31,6 +31,22 @@ pipeline {
             }
         }
 
+        stage('SonarQube Analysis') {
+            agent {
+                label 'CWEB3120Jenkins'
+            }
+            steps {
+                script {
+                    def scannerHome = tool 'SonarQube-Scanner'
+                    withSonarQubeEnv('SonarQube-installations') {
+                        sh "${scannerHome}/bin/sonar-scanner \
+                            -Dsonar.projectKey=gameapp \
+                            -Dsonar.sources=."
+                    }
+                }
+            }
+        }
+
       stage('BUILD-AND-TAG') {
             agent {
                 label 'CWEB3120Jenkins'
